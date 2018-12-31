@@ -26,6 +26,7 @@ type Props<T> = PagerCommonProps<T> &
     renderTabBar: (props: SceneRendererProps<T>) => React.Node,
     tabBarPosition: 'top' | 'bottom',
     useNativeDriver?: boolean,
+    bounces?: boolean,
     style?: ViewStyleProp,
   };
 
@@ -64,6 +65,7 @@ export default class TabView<T: *> extends React.Component<Props<T>, State> {
       height: 0,
       width: 0,
     },
+    bounces: false,
     useNativeDriver: false,
   };
 
@@ -149,6 +151,7 @@ export default class TabView<T: *> extends React.Component<Props<T>, State> {
     navigationState: this.props.navigationState,
     jumpTo: this._jumpTo,
     useNativeDriver: this.props.useNativeDriver === true,
+    bounces: this.props.bounces,
   });
 
   _jumpTo = (key: string) => {
