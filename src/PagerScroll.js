@@ -1,9 +1,10 @@
 /* @flow */
 
 import * as React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { PagerRendererPropType } from './PropTypes';
 import type { PagerRendererProps } from './TypeDefinitions';
+import { ScrollView } from "react-native-gesture-handler"
 
 type ScrollEvent = {
   nativeEvent: {
@@ -145,6 +146,7 @@ export default class PagerScroll<T: *> extends React.Component<
 
     return (
       <ScrollView
+        waitFor={this.props.waitFor}
         horizontal
         pagingEnabled
         directionalLockEnabled
