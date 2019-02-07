@@ -1,9 +1,10 @@
 /* @flow */
 
 import * as React from 'react';
-import { View, ViewPagerAndroid, StyleSheet, I18nManager } from 'react-native';
+import { View, StyleSheet, I18nManager } from 'react-native';
 import { PagerRendererPropType } from './PropTypes';
 import type { PagerRendererProps } from './TypeDefinitions';
+import { ViewPagerAndroid } from "react-native-gesture-handler"
 
 type PageScrollEvent = {
   nativeEvent: {
@@ -147,6 +148,7 @@ export default class PagerAndroid<T: *> extends React.Component<Props<T>> {
     return (
       <ViewPagerAndroid
         key={navigationState.routes.length}
+        waitFor={this.props.waitFor}
         keyboardDismissMode={keyboardDismissMode}
         initialPage={initialPage}
         scrollEnabled={swipeEnabled !== false}
