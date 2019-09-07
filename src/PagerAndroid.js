@@ -4,8 +4,12 @@ import * as React from 'react';
 import { View, StyleSheet, I18nManager } from 'react-native';
 import { PagerRendererPropType } from './PropTypes';
 import type { PagerRendererProps } from './TypeDefinitions';
-import { ViewPagerAndroid } from "react-native-gesture-handler"
+import { ViewPagerAndroid } from '@react-native-community/viewpager';
+import { createNativeWrapper } from 'react-native-gesture-handler';
 
+const WrappedViewPagerAndroid = createNativeWrapper(ViewPagerAndroid, {
+  disallowInterruption: true,
+});
 type PageScrollEvent = {
   nativeEvent: {
     position: number,
@@ -158,7 +162,7 @@ export default class PagerAndroid<T: *> extends React.Component<Props<T>> {
     const initialPage = this._getPageIndex(navigationState.index);
 
     return (
-      <ViewPagerAndroid
+      <WrappedViewPagerAndroid
         key={navigationState.routes.length}
         keyboardDismissMode={keyboardDismissMode}
         initialPage={initialPage}
@@ -170,7 +174,7 @@ export default class PagerAndroid<T: *> extends React.Component<Props<T>> {
         ref={el => (this._viewPager = el)}
       >
         {content}
-      </ViewPagerAndroid>
+      </WrappedViewPagerAndroid>
     );
   }
 }
